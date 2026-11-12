@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAANIX — Light that moves you</title>
+  <meta name="description" content="GAANIX is an independent photography studio working in portrait, landscape, street and studio photography. A scroll-driven 3D gallery." />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="is-loading">
 
+  <!-- loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__brand">GAANIX</span>
+      <span class="loader__count"><span id="loadPct">0</span><i>%</i></span>
+      <span class="loader__end">Focusing…</span>
+    </div>
+  </div>
+
+  <!-- 3d stage canvas -->
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+  <!-- nav -->
+  <header class="nav">
+    <a class="nav__brand" href="#top" aria-label="Gaanix home">
+      <span class="nav__mark"></span>
+      <span>GAANIX</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work" data-cursor>Frames</a>
+      <a href="#studio" data-cursor>Studio</a>
+      <a href="#contact" data-cursor>Contact</a>
+    </nav>
+    <a class="nav__cta" href="#contact" data-cursor>Book a shoot <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ 3D JOURNEY ============ -->
+    <section class="journey" id="journey" aria-label="Immersive gallery">
+      <div class="stage" id="stage">
+
+        <div class="chapter chapter--hero" data-chapter="0">
+          <p class="eyebrow"><span>Independent photography studio</span><span>Est. 2014 · Worldwide</span></p>
+          <h1 class="hero__title">
+            <span>Light</span>
+            <span class="ital">that moves</span>
+            <span>you.</span>
+          </h1>
+          <div class="hero__meta">
+            <p>Portrait — Landscape<br />Street — Studio</p>
+            <p class="hero__note">Scroll to travel through<br />the gallery in three dimensions.</p>
+          </div>
+        </div>
+
+        <article class="chapter chapter--left" data-chapter="1">
+          <span class="chapter__num">01</span>
+          <span class="chapter__label">Portrait</span>
+          <h2>Faces,<br /><em>held still.</em></h2>
+          <p>We wait for the half-second where a person forgets the lens and remembers themselves. Natural light, long lenses, no hurry.</p>
+        </article>
+
+        <article class="chapter chapter--right" data-chapter="2">
+          <span class="chapter__num">02</span>
+          <span class="chapter__label">Landscape</span>
+          <h2>A world<br /><em>that breathes.</em></h2>
+          <p>Fog on a ridgeline, a lake with nobody in it. Landscape work made on foot, at dawn, usually in the wrong shoes.</p>
+        </article>
+
+        <article class="chapter chapter--left" data-chapter="3">
+          <span class="chapter__num">03</span>
+          <span class="chapter__label">Street</span>
+          <h2>Stories in<br /><em>the margins.</em></h2>
+          <p>The city writes in small print — a doorway, a gesture, a shadow crossing a wall. We read it slowly, then press the shutter.</p>
+        </article>
+
+        <article class="chapter chapter--right" data-chapter="4">
+          <span class="chapter__num">04</span>
+          <span class="chapter__label">Studio</span>
+          <h2>Made<br /><em>of light.</em></h2>
+          <p>A room, a black cloth, one hard light. Studio portraits and still life, built one frame at a time.</p>
+        </article>
+
+        <div class="chapter chapter--outro" data-chapter="5">
+          <span class="chapter__label">End of the corridor</span>
+          <h2>One continuous<br /><em>take.</em></h2>
+          <p>Eighteen frames suspended in space. The room keeps moving as long as you do.</p>
+          <a class="btn" href="#work" data-cursor><span>See selected frames</span><i aria-hidden="true">↓</i></a>
+        </div>
+
+        <div class="hud" aria-hidden="true">
+          <div class="hud__bar"><span id="hudFill"></span></div>
+          <div class="hud__meta">
+            <span id="hudIndex">00</span>
+            <span class="hud__sep">/</span>
+            <span>05</span>
+            <span class="hud__label" id="hudLabel">Entry</span>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+          <span>Scroll</span>
+          <i></i>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ SELECTED FRAMES ============ -->
+    <section class="frames" id="work">
+      <div class="frames__head">
+        <div>
+          <p class="eyebrow"><span>Selected frames</span><span>2019 — 2026</span></p>
+          <h2 class="section-title">The archive,<br /><em>flattened.</em></h2>
+        </div>
+        <p class="frames__intro">
+          A small edit from a large shelf — commissioned work, personal series and a few frames
+          that never made the website until now. Hover to tilt the print.
+        </p>
+      </div>
+
+      <div class="frames__grid" id="frameGrid">
+        <figure class="frame frame--tall" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p14.jpg" alt="Mountain ridge disappearing into fog" loading="lazy" />
+            <figcaption><span>Ridge, no. 04</span><span>Landscape · 2024</span></figcaption>
+          </div>
+        </figure>
+        <figure class="frame frame--wide" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p16.jpg" alt="A wide landscape at dusk" loading="lazy" />
+            <figcaption><span>North light</span><span>Landscape · 2023</span></figcaption>
+          </div>
+        </figure>
+        <figure class="frame frame--std" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p03.jpg" alt="Portrait study in soft light" loading="lazy" />
+            <figcaption><span>Mira, seated</span><span>Portrait · 2025</span></figcaption>
+          </div>
+        </figure>
+        <figure class="frame frame--std" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p07.jpg" alt="Street scene in the city" loading="lazy" />
+            <figcaption><span>Corner, 6pm</span><span>Street · 2022</span></figcaption>
+          </div>
+        </figure>
+        <figure class="frame frame--wide" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p18.jpg" alt="Studio still life" loading="lazy" />
+            <figcaption><span>Still, with cloth</span><span>Studio · 2026</span></figcaption>
+          </div>
+        </figure>
+        <figure class="frame frame--tall" data-frame data-cursor>
+          <div class="frame__inner">
+            <img src="images/p10.jpg" alt="Portrait against a dark backdrop" loading="lazy" />
+            <figcaption><span>After the rain</span><span>Portrait · 2024</span></figcaption>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ STUDIO ============ -->
+    <section class="studio" id="studio">
+      <div class="studio__copy">
+        <p class="eyebrow"><span>The studio</span><span>Slow photography</span></p>
+        <h2 class="section-title">We shoot<br /><em>slow.</em></h2>
+        <p class="studio__lead">
+          Gaanix is a two-person studio working between Kigali and Lisbon. We build
+          pictures the long way — conversations first, test frames, then the real thing.
+        </p>
+        <p class="studio__body">
+          Every commission ends with a physical print and a small digital edit. Nothing is
+          batch-graded, nothing is left to a preset. If a frame needs six hours of light,
+          we book the room for six hours.
+        </p>
+        <dl class="stats">
+          <div><dt>12</dt><dd>years behind the lens</dd></div>
+          <div><dt>240</dt><dd>commissions delivered</dd></div>
+          <div><dt>18</dt><dd>frames on this site</dd></div>
+        </dl>
+      </div>
+
+      <div class="studio__visual">
+        <div class="carousel" id="carousel" aria-label="Rotating 3D print rack">
+          <div class="carousel__ring" id="ring">
+            <div class="ring-item"><img src="images/p05.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p13.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p02.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p17.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p08.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p15.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p04.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p11.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p06.jpg" alt="" /></div>
+            <div class="ring-item"><img src="images/p09.jpg" alt="" /></div>
+          </div>
+          <span class="carousel__hint">Drag to spin</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <div class="contact__head">
+        <p class="eyebrow"><span>Contact</span><span>Booking 2027</span></p>
+        <h2 class="contact__title">
+          Let's make something<br /><em>still.</em>
+        </h2>
+      </div>
+      <div class="contact__grid">
+        <div class="contact__block">
+          <span class="contact__label">Write</span>
+          <a href="mailto:hello@gaanix.studio" class="contact__link" data-cursor>hello@gaanix.studio</a>
+          <a href="tel:+250788000000" class="contact__link" data-cursor>+250 788 000 000</a>
+        </div>
+        <div class="contact__block">
+          <span class="contact__label">Visit</span>
+          <p>Studio 4, Kiyovu<br />Kigali, Rwanda</p>
+          <p>Rua da Boavista 118<br />Lisbon, Portugal</p>
+        </div>
+        <div class="contact__block">
+          <span class="contact__label">Follow</span>
+          <a href="#" class="contact__link" data-cursor>Instagram</a>
+          <a href="#" class="contact__link" data-cursor>Behance</a>
+          <a href="#" class="contact__link" data-cursor>Are.na</a>
+        </div>
+      </div>
+      <div class="contact__marquee" aria-hidden="true">
+        <div class="contact__track">
+          <span>Available for commissions — Portrait · Landscape · Street · Studio — </span>
+          <span>Available for commissions — Portrait · Landscape · Street · Studio — </span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Gaanix Studio</span>
+      <span class="footer__mid">Light, in three dimensions.</span>
+      <a href="#top" data-cursor>Back to top ↑</a>
+    </footer>
+
+  </main>
+
+  <noscript>
+    <div class="noscript">This site uses WebGL and JavaScript for its 3D gallery. The photographs and text are still readable, but the immersive scroll experience needs scripting enabled.</div>
+  </noscript>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
